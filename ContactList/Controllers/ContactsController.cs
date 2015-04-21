@@ -1,9 +1,11 @@
 ﻿using ContactList.Models;
 using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ContactList.Controllers
 {
+    [EnableCors(origins:"*", headers:"*", methods: "*")] /* -- NEW CODE -- */
     public class ContactsController : ApiController
     {
         [HttpGet]
