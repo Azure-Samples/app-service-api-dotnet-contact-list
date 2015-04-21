@@ -44,7 +44,7 @@
                     <td>{{con.Id}}</td>
                     <td>{{con.Name}}</td>
                     <td>{{con.EmailAddress}}</td>
-                    <td></td>
+                    <td><button class="btn btn-sm btn-warning" ng-click="delete(con.Id)">Delete</button></td>
                 </tr>
             </tbody>
             <tfoot>
@@ -105,6 +105,17 @@
                     $scope.newId = 0;
                     $scope.newName = '';
                     $scope.newEmail = '';
+                });
+            };
+
+            $scope.delete = function (id) {
+                $scope.status = "Deleting contact";
+                $http({
+                    method: 'DELETE',
+                    url: $scope.baseUrl + '/api/contacts/' + id
+                }).success(function (data) {
+                    $scope.status = "Contact deleted";
+                    $scope.refresh();
                 });
             };
 
