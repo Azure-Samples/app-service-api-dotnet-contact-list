@@ -10,7 +10,9 @@ namespace ContactList
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            config.EnableCors();
+
+            // Comment out this line if you prefer to control CORS using the Azure Portal
+            config.EnableCors(); 
 
             // Web API routes
             config.MapHttpAttributeRoutes();
