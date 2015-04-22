@@ -8,6 +8,7 @@ using System.Linq;
 
 namespace ContactList.Controllers
 {
+    // Comment out this line if you prefer to control CORS using the Azure Portal
     [EnableCors(origins:"*", headers:"*", methods: "*")] /* -- NEW CODE -- */
     public class ContactsController : ApiController
     {
