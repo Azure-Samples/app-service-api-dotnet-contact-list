@@ -5,11 +5,12 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using System.Linq;
+using Swashbuckle.Swagger.Annotations;
+using System.Net;
+using System.Net.Http;
 
 namespace ContactList.Controllers
 {
-    // Comment out this line if you prefer to control CORS using the Azure Portal
-    [EnableCors(origins:"*", headers:"*", methods: "*")] /* -- NEW CODE -- */
     public class ContactsController : ApiController
     {
         private const string FILENAME = "contacts.json";
@@ -37,23 +38,46 @@ namespace ContactList.Controllers
             return contacts;
         }
 
+        /// <summary>
+        /// Gets the list of contacts
+        /// </summary>
+        /// <returns>The contacts</returns>
         [HttpGet]
-        [ResponseType(typeof(IEnumerable<Contact>))]
+        [SwaggerResponse(HttpStatusCode.OK,
+            Type=typeof(IEnumerable<Contact>))]
         public async Task<IEnumerable<Contact>> Get()
         {
             return await GetContact();
         }
 
+        /// <summary>
+        /// Gets a specific contact
+        /// </summary>
+        /// <param name="id">Identifier for the contact</param>
+        /// <returns>The requested contact</returns>
         [HttpGet]
-        [ResponseType(typeof(Contact))]
-        public async Task<Contact> GetById([FromUri] int id)
+        [SwaggerResponse(HttpStatusCode.OK,
+            Description = "OK",
+            Type = typeof(IEnumerable<Contact>))]
+        [SwaggerResponse(HttpStatusCode.NotFound,
+            Description = "Contact not found",
+            Type = typeof(IEnumerable<Contact>))]
+        [SwaggerOperation("GetContactById")]
+        public async Task<Contact> Get([FromUri] int id)
         {
             var contacts = await GetContact();
             return contacts.FirstOrDefault(x => x.Id == id);
         }
 
+        /// <summary>
+        /// Creates a new contact
+        /// </summary>
+        /// <param name="contact">The new contact</param>
+        /// <returns>The saved contact</returns>
         [HttpPost]
-        [ResponseType(typeof(Contact))]
+        [SwaggerResponse(HttpStatusCode.Created,
+            Description = "Created",
+            Type = typeof(Contact))]
         public async Task<Contact> Post([FromBody] Contact contact)
         {
             var contacts = await GetContact();
@@ -63,15 +87,34 @@ namespace ContactList.Controllers
             return contact;
         }
 
+        /// <summary>
+        /// Deletes a contact
+        /// </summary>
+        /// <param name="id">Identifier of the contact to be deleted</param>
+        /// <returns>True if the contact was deleted</returns>
         [HttpDelete]
         [ResponseType(typeof(bool))]
-        public async Task<bool> Delete([FromUri] int id)
+        [SwaggerResponse(HttpStatusCode.OK,
+            Description = "OK",
+            Type = typeof(IEnumerable<Contact>))]
+        [SwaggerResponse(HttpStatusCode.NotFound,
+            Description = "Contact not found",
+            Type = typeof(IEnumerable<Contact>))]
+        public async Task<HttpResponseMessage> Delete([FromUri] int id)
         {
             var contacts = await GetContact();
             var contactList = contacts.ToList();
-            contactList.RemoveAll(x => x.Id == id);
-            await _storage.Save(contactList, FILENAME);
-            return true;
+
+            if (!contactList.Any(x => x.Id == id))
+            {
+                return Request.CreateResponse<bool>(HttpStatusCode.NotFound, false);
+            }
+            else
+            {
+                contactList.RemoveAll(x => x.Id == id);
+                await _storage.Save(contactList, FILENAME);
+                return Request.CreateResponse<bool>(HttpStatusCode.OK, true);
+            }
         }
     }
 }
