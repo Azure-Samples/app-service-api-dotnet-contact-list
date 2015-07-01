@@ -93,13 +93,12 @@ namespace ContactList.Controllers
         /// <param name="id">Identifier of the contact to be deleted</param>
         /// <returns>True if the contact was deleted</returns>
         [HttpDelete]
-        [ResponseType(typeof(bool))]
         [SwaggerResponse(HttpStatusCode.OK,
             Description = "OK",
-            Type = typeof(IEnumerable<Contact>))]
+            Type = typeof(bool))]
         [SwaggerResponse(HttpStatusCode.NotFound,
             Description = "Contact not found",
-            Type = typeof(IEnumerable<Contact>))]
+            Type = typeof(bool))]
         public async Task<HttpResponseMessage> Delete([FromUri] int id)
         {
             var contacts = await GetContact();
