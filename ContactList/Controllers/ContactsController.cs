@@ -45,6 +45,7 @@ namespace ContactList.Controllers
         [HttpGet]
         [SwaggerResponse(HttpStatusCode.OK,
             Type=typeof(IEnumerable<Contact>))]
+        [Route("~/")]
         public async Task<IEnumerable<Contact>> Get()
         {
             return await GetContact();
@@ -63,6 +64,7 @@ namespace ContactList.Controllers
             Description = "Contact not found",
             Type = typeof(IEnumerable<Contact>))]
         [SwaggerOperation("GetContactById")]
+        [Route("~/{id}")]
         public async Task<Contact> Get([FromUri] int id)
         {
             var contacts = await GetContact();
@@ -78,6 +80,7 @@ namespace ContactList.Controllers
         [SwaggerResponse(HttpStatusCode.Created,
             Description = "Created",
             Type = typeof(Contact))]
+        [Route("~/")]
         public async Task<Contact> Post([FromBody] Contact contact)
         {
             var contacts = await GetContact();
@@ -99,6 +102,7 @@ namespace ContactList.Controllers
         [SwaggerResponse(HttpStatusCode.NotFound,
             Description = "Contact not found",
             Type = typeof(bool))]
+        [Route("~/{id}")]
         public async Task<HttpResponseMessage> Delete([FromUri] int id)
         {
             var contacts = await GetContact();
