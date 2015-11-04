@@ -73,7 +73,7 @@
                 $scope.status = "Refreshing Contacts...";
                 $http({
                     method: 'GET',
-                    url: $scope.baseUrl + '/api/contacts',
+                    url: $scope.baseUrl,
                     headers: {
                         'Content-Type': 'application/json'
                     }
@@ -90,7 +90,7 @@
 
                 $http({
                     method: 'POST',
-                    url: $scope.baseUrl + '/api/contacts',
+                    url: $scope.baseUrl,
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -112,7 +112,7 @@
                 $scope.status = "Deleting contact";
                 $http({
                     method: 'DELETE',
-                    url: $scope.baseUrl + '/api/contacts/' + id
+                    url: $scope.baseUrl + '/' + id
                 }).success(function (data) {
                     $scope.status = "Contact deleted";
                     $scope.refresh();
