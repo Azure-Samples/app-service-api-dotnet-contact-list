@@ -21,7 +21,7 @@ namespace ContactList.Controllers
             _storage = new GenericStorage();
         }
 
-        private async Task<IEnumerable<Contact>> GetContact()
+        private async Task<IEnumerable<Contact>> GetContacts()
         {
             var contacts = await _storage.Get(FILENAME);
 
@@ -48,7 +48,7 @@ namespace ContactList.Controllers
         [Route("~/")]
         public async Task<IEnumerable<Contact>> Get()
         {
-            return await GetContact();
+            return await GetContacts();
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace ContactList.Controllers
         [Route("~/{id}")]
         public async Task<Contact> Get([FromUri] int id)
         {
-            var contacts = await GetContact();
+            var contacts = await GetContacts();
             return contacts.FirstOrDefault(x => x.Id == id);
         }
 
@@ -83,7 +83,7 @@ namespace ContactList.Controllers
         [Route("~/")]
         public async Task<Contact> Post([FromBody] Contact contact)
         {
-            var contacts = await GetContact();
+            var contacts = await GetContacts();
             var contactList = contacts.ToList();
             contactList.Add(contact);
             await _storage.Save(contactList, FILENAME);
@@ -105,7 +105,7 @@ namespace ContactList.Controllers
         [Route("~/{id}")]
         public async Task<HttpResponseMessage> Delete([FromUri] int id)
         {
-            var contacts = await GetContact();
+            var contacts = await GetContacts();
             var contactList = contacts.ToList();
 
             if (!contactList.Any(x => x.Id == id))
