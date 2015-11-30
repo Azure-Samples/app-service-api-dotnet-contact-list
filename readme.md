@@ -14,9 +14,4 @@ For the authentication scenario the example includes an AngularJS client configu
 
 ## More Information ##
 
-- [API Apps overview](http://azure.microsoft.com/en-us/documentation/articles/app-service-api-apps-why-best-platform/ "What are API Apps?")
-- [Create an API app in Azure App Service](http://azure.microsoft.com/en-us/documentation/articles/app-service-dotnet-create-api-app/)
-- [Convert an existing API to an API app](http://azure.microsoft.com/en-us/documentation/articles/app-service-dotnet-create-api-app-visual-studio/)
-- Debug an API App](http://azure.microsoft.com/en-us/documentation/articles/app-service-api-dotnet--debug/)
-- [Protect an API app](http://azure.microsoft.com/en-us/documentation/articles/app-service-api-dotnet-add-authentication/)
-- [Deploy an API app in App Service](http://azure.microsoft.com/en-us/documentation/articles/app-service-dotnet-deploy-api-app/)
+- [Get started with API Apps and ASP.NET in Azure App Service](https://azure.microsoft.com/documentation/articles/app-service-api-dotnet-get-started/)
