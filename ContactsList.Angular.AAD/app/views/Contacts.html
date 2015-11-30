@@ -1,0 +1,53 @@
+﻿<div ng-init="populate()">
+    <p class="error">{{error}}</p>
+    <p>{{loadingMessage}}</p>
+    <div class="panel">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-ng-repeat="item in contactsList">
+                    <td>
+                        <p data-ng-hide="item.edit">{{item.Id}}</p>
+                        <input data-ng-show="item.edit" type="text" data-ng-model="editInProgressContact.Id" class="form-control" />
+                    </td>
+                    <td>
+                        <p data-ng-hide="item.edit">{{item.Name}}</p>
+                        <input data-ng-show="item.edit" type="text" data-ng-model="editInProgressContact.Name" class="form-control" />
+                    </td>
+                    <td>
+                        <p data-ng-hide="item.edit">{{item.EmailAddress}}</p>
+                        <input data-ng-show="item.edit" type="text" data-ng-model="editInProgressContact.EmailAddress" class="form-control" />
+                    </td>
+                    <td>
+                        <p data-ng-hide="item.edit || editingInProgress">
+                            <button class="btn btn-sm btn-info" data-ng-click="editSwitch(item)" href="javascript:;">Edit</button> |
+                            <button class="btn btn-sm btn-warning" data-ng-click="delete(item.Id)" href="javascript:;">Delete</button>
+                        </p>
+                        <p data-ng-show="item.edit">
+                            <button class="btn btn-sm btn-info" data-ng-click="update(item)" href="javascript:;">Save</button> |
+                            <button class="btn btn-sm btn-warning" data-ng-click="editSwitch(item)" href="javascript:;">Cancel</button>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4">Create a new Contact</th>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="ID" ng-model="newId" /></td>
+                    <td><input type="text" placeholder="Name" ng-model="newName" /></td>
+                    <td><input type="text" placeholder="Email Address" ng-model="newEmailAddress" /></td>
+                    <td><button class="btn btn-sm btn-success" ng-click="create()">Create</button></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
