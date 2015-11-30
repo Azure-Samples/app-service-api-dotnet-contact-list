@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactList", "ContactList\ContactList.csproj", "{557117C4-1400-4E1B-A777-14A944ED3B0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsList.Angular", "ContactsList.Angular\ContactsList.Angular.csproj", "{19451DDD-3325-4542-B017-D1BB483C51DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsListWebApp", "ContactsListWebApp\ContactsListWebApp.csproj", "{81A1158F-2399-4540-B11D-D1C5430F2B66}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsList.Angular.AAD", "ContactsList.Angular.AAD\ContactsList.Angular.AAD.csproj", "{A6F2984C-98F6-4116-8EB5-7E6A4BC78BB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsList.MVC", "ContactsList.MVC\ContactsList.MVC.csproj", "{40442A63-AD89-4901-B9C8-6B2278344679}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactsList.API", "ContactsList.API\ContactsList.API.csproj", "{22F0D517-5574-4282-B458-8D0223C0CCAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompanyContacts.API", "CompanyContacts.API\CompanyContacts.API.csproj", "{AE0E02AA-066D-4FAD-9A1F-ECF256506B3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +19,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{557117C4-1400-4E1B-A777-14A944ED3B0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{557117C4-1400-4E1B-A777-14A944ED3B0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{557117C4-1400-4E1B-A777-14A944ED3B0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{557117C4-1400-4E1B-A777-14A944ED3B0E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{81A1158F-2399-4540-B11D-D1C5430F2B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{81A1158F-2399-4540-B11D-D1C5430F2B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{81A1158F-2399-4540-B11D-D1C5430F2B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{81A1158F-2399-4540-B11D-D1C5430F2B66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19451DDD-3325-4542-B017-D1BB483C51DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19451DDD-3325-4542-B017-D1BB483C51DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19451DDD-3325-4542-B017-D1BB483C51DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19451DDD-3325-4542-B017-D1BB483C51DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6F2984C-98F6-4116-8EB5-7E6A4BC78BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6F2984C-98F6-4116-8EB5-7E6A4BC78BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6F2984C-98F6-4116-8EB5-7E6A4BC78BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6F2984C-98F6-4116-8EB5-7E6A4BC78BB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40442A63-AD89-4901-B9C8-6B2278344679}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40442A63-AD89-4901-B9C8-6B2278344679}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40442A63-AD89-4901-B9C8-6B2278344679}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40442A63-AD89-4901-B9C8-6B2278344679}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22F0D517-5574-4282-B458-8D0223C0CCAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22F0D517-5574-4282-B458-8D0223C0CCAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22F0D517-5574-4282-B458-8D0223C0CCAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22F0D517-5574-4282-B458-8D0223C0CCAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE0E02AA-066D-4FAD-9A1F-ECF256506B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE0E02AA-066D-4FAD-9A1F-ECF256506B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE0E02AA-066D-4FAD-9A1F-ECF256506B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE0E02AA-066D-4FAD-9A1F-ECF256506B3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
