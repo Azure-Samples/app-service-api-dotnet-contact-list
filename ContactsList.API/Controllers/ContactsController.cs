@@ -81,7 +81,6 @@ namespace ContactsList.API.Controllers
             //    }
             //}
 
-            contactsList[0].CreatedBy = ((ClaimsIdentity)User.Identity)?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             return contactsList;
         }
 
@@ -130,7 +129,7 @@ namespace ContactsList.API.Controllers
             var contacts = await GetContacts();
             var contactList = contacts.ToList();
 
-            contact.CreatedBy = ((ClaimsIdentity)User.Identity)?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            contact.CreatedBy = ((ClaimsIdentity)User.Identity)?.FindFirst(ClaimTypes.Email)?.Value;
             contactList.Add(contact);
             await _storage.Save(contactList, FILENAME);
             return contact;
