@@ -4,9 +4,9 @@ platforms: dotnet
 author: bradygaster
 ---
 
-# Contact List Azure API app Sample #
+# Contacts List Azure API app Sample #
 
-The Contact List sample is used by several tutorials that show how to create, deploy, consume, and debug [API apps](http://azure.microsoft.com/en-us/documentation/articles/app-service-api-apps-why-best-platform/ "What are API Apps?") in Azure App Service.
+The Contacts List sample is used by several tutorials that show how to create, deploy, consume, and debug [API apps](http://azure.microsoft.com/en-us/documentation/articles/app-service-api-apps-why-best-platform/ "What are API Apps?") in Azure App Service.
 
 For the simplest scenario without authentication the example includes a Web API back end and two simple clients, one HTML/AngularJS and one ASP.NET MVC 5.  
 
