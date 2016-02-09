@@ -12,7 +12,6 @@ namespace CompanyContacts.API.Controllers
 {
     public class ContactsController : Controller
     {
-        //private ContactsListAPI db = new ContactsListAPI();
         private ContactsListAPI db = new ContactsListAPI(new Uri("http://localhost:51864"));
 
         // GET: Contacts
