@@ -33,22 +33,10 @@ namespace ContactsList.API.Filters
 namespace ContactsList.API.Controllers
 {
     [HttpOperationExceptionFilterAttribute]
-    // Uncomment the following line to enable CORS
-    //[EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ContactsController : ApiController
     {
         private const string FILENAME = "contacts.json";
         private GenericStorage _storage;
-
-        private static CompanyContactsAPI CompanyContactsAPIClientWithAuth()
-        {
-            var client = new CompanyContactsAPI(new Uri(ConfigurationManager.AppSettings["CompanyContactsAPIUrl"]));
-            client.HttpClient.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", ServicePrincipal.GetS2SAccessTokenForProdMSA().AccessToken);
-            return client;
-        }
-
-
 
         public ContactsController()
         {
@@ -71,16 +59,6 @@ namespace ContactsList.API.Controllers
             }
 
             var contactsList = contacts.ToList<Contact>();
-            //Uncomment the following using block to call the CompanyContacts API
-            //using (var client = CompanyContactsAPIClientWithAuth())
-            //{
-            //    var results = await client.Contacts.GetAsync();
-            //    foreach (Contact c in results)
-            //    {
-            //        contactsList.Add(c);
-            //    }
-            //}
-
             return contactsList;
         }
 
@@ -146,7 +124,7 @@ namespace ContactsList.API.Controllers
             Type = typeof(Contact))]
         public async Task<Contact> Put([FromBody] Contact contact)
         {
-            await Delete(contact.Id.Value);
+            await Delete(contact.Id);
             await Post(contact);
             return contact;
         }

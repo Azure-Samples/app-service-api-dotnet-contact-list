@@ -1,5 +1,5 @@
 ﻿
-namespace CompanyContacts.API.Models
+namespace ContactsList.API.Models
 {
     public class Contact
     {

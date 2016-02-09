@@ -147,14 +147,6 @@
     <Compile Include="App_Start\GenericStorage.cs" />
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="CompanyContactsAPI\CompanyContactsAPI.cs" />
-    <Compile Include="CompanyContactsAPI\CompanyContactsAPIExtensions.cs" />
-    <Compile Include="CompanyContactsAPI\Contacts.cs" />
-    <Compile Include="CompanyContactsAPI\ContactsExtensions.cs" />
-    <Compile Include="CompanyContactsAPI\ICompanyContactsAPI.cs" />
-    <Compile Include="CompanyContactsAPI\IContacts.cs" />
-    <Compile Include="CompanyContactsAPI\Models\Contact.cs" />
-    <Compile Include="CompanyContactsAPI\Models\ContactCollection.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
