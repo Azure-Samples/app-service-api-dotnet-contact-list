@@ -24,7 +24,7 @@ namespace ContactsList.API.Filters
             if (context.Exception is Microsoft.Rest.HttpOperationException)
             {
                 var ex = (Microsoft.Rest.HttpOperationException)context.Exception;
-                context.Response = ex.Response;
+                context.Response = new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
         }
     }
