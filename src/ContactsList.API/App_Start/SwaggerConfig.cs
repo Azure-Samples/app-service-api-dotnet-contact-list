@@ -2,6 +2,7 @@ using System.Web.Http;
 using WebActivatorEx;
 using ContactsList.API;
 using Swashbuckle.Application;
+using System;
 
 [assembly: PreApplicationStartMethod(typeof(SwaggerConfig), "Register")]
 
@@ -57,6 +58,7 @@ namespace ContactsList.API
                         //c.BasicAuth("basic")
                         //    .Description("Basic HTTP Authentication");
                         //
+						// NOTE: You must also configure 'EnableApiKeySupport' below in the SwaggerUI section
                         //c.ApiKey("apiKey")
                         //    .Description("API Key Authentication")
                         //    .Name("apiKey")
@@ -96,7 +98,7 @@ namespace ContactsList.API
                         // those comments into the generated docs and UI. You can enable this by providing the path to one or
                         // more Xml comment files.
                         //
-                        //c.IncludeXmlComments(GetXmlCommentsPath());
+                        // c.IncludeXmlComments(GetXmlCommentsPath());
 
                         // Swashbuckle makes a best attempt at generating Swagger compliant JSON schemas for the various types
                         // exposed in your API. However, there may be occasions when more control of the output is needed.
@@ -110,15 +112,11 @@ namespace ContactsList.API
                         // complex Schema, use a Schema filter.
                         //
                         //c.MapType<ProductType>(() => new Schema { type = "integer", format = "int32" });
-                        //
+
                         // If you want to post-modify "complex" Schemas once they've been generated, across the board or for a
                         // specific type, you can wire up one or more Schema filters.
                         //
                         //c.SchemaFilter<ApplySchemaVendorExtensions>();
-
-                        // Set this flag to omit schema property descriptions for any type properties decorated with the
-                        // Obsolete attribute 
-                        //c.IgnoreObsoleteProperties();
 
                         // In a Swagger 2.0 document, complex types are typically declared globally and referenced by unique
                         // Schema Id. By default, Swashbuckle does NOT use the full type name in Schema Ids. In most cases, this
@@ -127,6 +125,15 @@ namespace ContactsList.API
                         // need to opt out of this behavior to avoid Schema Id conflicts.
                         //
                         //c.UseFullTypeNameInSchemaIds();
+
+                        // Alternatively, you can provide your own custom strategy for inferring SchemaId's for
+                        // describing "complex" types in your API.
+                        //  
+                        //c.SchemaId(t => t.FullName.Contains('`') ? t.FullName.Substring(0, t.FullName.IndexOf('`')) : t.FullName);
+
+                        // Set this flag to omit schema property descriptions for any type properties decorated with the
+                        // Obsolete attribute 
+                        //c.IgnoreObsoleteProperties();
 
                         // In accordance with the built in JsonSerializer, Swashbuckle will, by default, describe enums as integers.
                         // You can change the serializer behavior by configuring the StringToEnumConverter globally or for a given
@@ -166,11 +173,9 @@ namespace ContactsList.API
                         // alternative implementation for ISwaggerProvider with the CustomProvider option.
                         //
                         //c.CustomProvider((defaultProvider) => new CachingSwaggerProvider(defaultProvider));
-                        /*
-                            })
-                        .EnableSwaggerUi(c =>
-                            {
-                        */
+                    })
+                .EnableSwaggerUi(c =>
+                    {
                         // Use the "InjectStylesheet" option to enrich the UI with one or more additional CSS stylesheets.
                         // The file must be included in your project as an "Embedded Resource", and then the resource's
                         // "Logical Name" is passed to the method as shown below.
@@ -201,6 +206,11 @@ namespace ContactsList.API
                         //
                         //c.DocExpansion(DocExpansion.List);
 
+                        // Specify which HTTP operations will have the 'Try it out!' option. An empty paramter list disables
+                        // it for all operations.
+                        //
+                        //c.SupportedSubmitMethods("GET", "HEAD");
+
                         // Use the CustomAsset option to provide your own version of assets used in the swagger-ui.
                         // It's typically used to instruct Swashbuckle to return your version instead of the default
                         // when a request is made for "index.html". As with all custom content, the file must be included
@@ -219,7 +229,18 @@ namespace ContactsList.API
                         // If your API supports the OAuth2 Implicit flow, and you've described it correctly, according to
                         // the Swagger 2.0 specification, you can enable UI support as shown below.
                         //
-                        //c.EnableOAuth2Support("test-client-id", "test-realm", "Swagger UI");
+                        //c.EnableOAuth2Support(
+                        //    clientId: "test-client-id",
+                        //    clientSecret: null,
+                        //    realm: "test-realm",
+                        //    appName: "Swagger UI"
+                        //    //additionalQueryStringParams: new Dictionary<string, string>() { { "foo", "bar" } }
+                        //);
+
+                        // If your API supports ApiKey, you can override the default values.
+                        // "apiKeyIn" can either be "query" or "header"                                                
+                        //
+                        //c.EnableApiKeySupport("apiKey", "header");
                     });
         }
     }

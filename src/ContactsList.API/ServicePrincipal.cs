@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Threading.Tasks;
 
 namespace ContactsList.API
 {
@@ -21,16 +22,16 @@ namespace ContactsList.API
         // The key that was created for the "client" app (i.e. this app).
         static string clientSecret = ConfigurationManager.AppSettings["ida:ClientSecret"];
 
-        public static AuthenticationResult GetS2SAccessTokenForProdMSA()
+        public static async Task<AuthenticationResult> GetS2SAccessTokenForProdMSA()
         {
-            return GetS2SAccessToken(authority, resource, clientId, clientSecret);
+            return await GetS2SAccessToken(authority, resource, clientId, clientSecret);
         }
 
 
         ///<summary>
         /// Gets an application token used for service-to-service (S2S) API calls.
         ///</summary>
-        static AuthenticationResult GetS2SAccessToken(string authority, string resource, string clientId, string clientSecret)
+        static async Task<AuthenticationResult> GetS2SAccessToken(string authority, string resource, string clientId, string clientSecret)
         {
             // Client credential consists of the "client" AAD web application's Client ID
             // and the key that was generated for the application in the AAD Azure portal extension.
@@ -40,7 +41,7 @@ namespace ContactsList.API
             AuthenticationContext context = new AuthenticationContext(authority, false);
 
             // Fetch an access token from AAD.
-            AuthenticationResult authenticationResult = context.AcquireToken(
+            AuthenticationResult authenticationResult = await context.AcquireTokenAsync(
                 resource,
                 clientCredential);
             return authenticationResult;
